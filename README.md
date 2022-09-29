@@ -11,6 +11,20 @@ This repo contains:
 
 ---
 
+### Dependencies
+
+To compile the firmware, [Arduino IDE 1.8.19](https://www.arduino.cc/en/software) is needed. Newer IDE versions are not verfied to work.
+
+The firmware requires the following libraries installed:
+- [RFM69](https://github.com/LowPowerLab/RFM69)
+- [SPIFlash](https://github.com/LowPowerLab/SPIFlash)
+- [LowPower](https://github.com/LowPowerLab/LowPower)
+- [Adafruit PWM Servo Driver Library](https://github.com/adafruit/Adafruit-PWM-Servo-Driver-Library)
+
+The firmware also requires the Moteino Board definitions installed following [this guide](https://lowpowerlab.com/guide/moteino/programming-libraries/).
+
+---
+
 ### Logger script
 
 The [logger script](https://github.com/AKstudios/BORC/blob/dev/logger/logger.py) enables capturing current usage data over the serial port on the BORC.

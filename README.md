@@ -44,6 +44,6 @@ python logger.py -c COM15 -n filename
 - Change COM port number and filename as needed
 - For MacOS or Linux, You'll have to use `ls /dev/tty.*` command in terminal to find the COM port, and replace `COM15` above to the full path of the COM port
 - The script automatically adds the .csv extension to the filename, so there's no need to include it in the arguments when running the script
-- Use `-h` command to bring a help menu (eg. `python logger.py -h`
+- Use `-h` command to bring a help menu (eg. `python logger.py -h`)
 - If the servo doesn't move in some areas, you can adjust the default min and max limits to the particular servo installed. The default limits should be set to where the servo is guaranteed to move, and beyond these limits, the servo will not respond.
-- Default baudrate for the BORC is 115200.
+- Default baudrate for the BORC is `115200`.

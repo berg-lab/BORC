@@ -22,9 +22,10 @@ DEFAULT_MIN_LIMIT = 3595
 DEFAULT_MAX_LIMIT = 3930
 servo_range = DEFAULT_MAX_LIMIT - DEFAULT_MIN_LIMIT
 notches = 6
-buffer = []
+BAUDRATE = 115200
 file_extention = ".csv"
 header = ['Time', 'CURRENT', 'mA']
+buffer = []
 #=========================================================================================================
 
 
@@ -193,7 +194,7 @@ read_args()
 
 # try to initialize the serial port
 try:
-    serialport = serial.Serial(port=COM_port, baudrate=115200, timeout=2) # make sure baud rate is the same
+    serialport = serial.Serial(port=COM_port, baudrate=BAUDRATE, timeout=2) # make sure baud rate is the same
 
 # if it didn't work, throw an exception
 except:

@@ -11,7 +11,7 @@ This repo contains:
 
 ---
 
-### Dependencies
+## Dependencies
 
 To compile the firmware, [Arduino IDE 1.8.19](https://www.arduino.cc/en/software) is needed. Newer IDE versions are not verfied to work.
 
@@ -25,28 +25,28 @@ The firmware also requires the Moteino Board definitions installed following [th
 
 ---
 
-### Logger script
+## Logger script
 
 The [logger script](https://github.com/berg-lab/BORC/blob/master/logger/logger.py) enables capturing current usage data over the serial port on the BORC.
 
-#### Prerequisites:
+### Prerequisites:
 - [pip](https://pip.pypa.io/en/stable/installation/)
 - [Pyserial](https://pypi.org/project/pyserial/)
 
-#### Run:
+### Run:
 Run the script using the following command over a command line interface:
 
-For Windows:
+_For Windows:_
 ```
 python logger.py -c COM15 -n filename
 ```
 
-For MacOS/Linux:
+_For MacOS/Linux:_
 ```
 python logger.py -c /dev/ttyusb0 -n filename
 ```
 
-#### Notes:
+### Notes:
 - Change `python` to `python3` if using Python version 3.
 - Change `filename` to something referencing the test to keep the generated files organized.
 - For Windows, go to device manager and find the COM port of the BORC under "Ports" section and replace `COM15` in the command above.

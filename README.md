@@ -13,7 +13,7 @@ This repo contains:
 
 ## Dependencies
 
-To compile the firmware, [Arduino IDE 1.8.19](https://www.arduino.cc/en/software) is needed. Newer IDE versions are not verfied to work.
+To compile the firmware, [Arduino IDE 1.8.19](https://www.arduino.cc/en/software) or higher is required.
 
 The firmware requires the following libraries installed:
 - [RFM69](https://github.com/LowPowerLab/RFM69)

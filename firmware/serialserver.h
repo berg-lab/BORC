@@ -30,6 +30,7 @@ protected:
     bool    handle_servo();
     bool    handle_encrypt();
     bool    handle_transmit();
+    bool    handle_calibrate();
     // ------------------------------------------------------------------
 
     void    show_nv(void*);

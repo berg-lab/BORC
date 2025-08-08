@@ -19,12 +19,14 @@ import csv
 # Global variables
 #=========================================================================================================
 DEFAULT_MIN_LIMIT = 3595
-DEFAULT_MAX_LIMIT = 3930
+DEFAULT_MAX_LIMIT = 4022
 servo_range = DEFAULT_MAX_LIMIT - DEFAULT_MIN_LIMIT
 notches = 6
-buffer = []
+BAUDRATE = 115200
 file_extention = ".csv"
 header = ['Time', 'CURRENT', 'mA']
+buffer = []
+header_flag = False
 #=========================================================================================================
 
 
@@ -118,6 +120,8 @@ def send_serial_data(command):
 
     global buffer
 
+    data = ''
+
     # add trailing newline and return to command
     command = str(command) + '\r\n'
     
@@ -163,15 +167,18 @@ def save_data(fn):
 
     global buffer
     global filename
+    global header_flag
 
     file_name = filename + '_' + fn + file_extention
     
     print (("Writing data to file: %s") % file_name)
 
-    # open file in write mode and write 
-    with open(file_name, 'w', newline='') as csvfile:
+    # open file in append mode and write 
+    with open(file_name, 'a', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
-        csvwriter.writerow(header)
+        if (not header_flag):
+            csvwriter.writerow(header)
+            header_flag = True
         csvwriter.writerows(buffer)
 
     # close file
@@ -193,7 +200,7 @@ read_args()
 
 # try to initialize the serial port
 try:
-    serialport = serial.Serial(port=COM_port, baudrate=115200, timeout=2) # make sure baud rate is the same
+    serialport = serial.Serial(port=COM_port, baudrate=BAUDRATE, timeout=2) # make sure baud rate is the same
 
 # if it didn't work, throw an exception
 except:
@@ -211,8 +218,26 @@ send_serial_data('temp')
 send_serial_data('clog start')
 
 # move servo and log data
-for i in range(4):
-    move_servo(i)
+# for i in range(4):
+#     move_servo(i)
+
+send_serial_data('servo 3597')
+save_data('3597')
+time.sleep(5)
+
+send_serial_data('servo 4020')
+save_data('4020')
+time.sleep(5)
+
+# for i in range(3596,4020):
+#     print (i)
+#     send_serial_data('servo %d' % i)
+#     save_data('step_3596')
+    # time.sleep(0.0001)
+
+
+
+
 
 # stop current logger
 send_serial_data('clog stop')

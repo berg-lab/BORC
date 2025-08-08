@@ -22,20 +22,21 @@
 void CSerialServer::on_command(const char* token)
 {
 
-    if      token_is("fwrev")    handle_fwrev();
-    else if token_is("nv")       handle_nv();
-    else if token_is("ee")       handle_nv();
-    else if token_is("reboot")   handle_reboot();
-    else if token_is("help")     handle_help();
-    else if token_is("nvset")    handle_nvset();
-    else if token_is("eeset")    handle_nvset();
-    else if token_is("sim")      handle_sim();
-    else if token_is("temp")     handle_temp();
-    else if token_is("setpoint") handle_setpoint();
-    else if token_is("ui")       handle_ui();
-    else if token_is("clog")     handle_clog();
-    else if token_is("servo")    handle_servo();
-    else if token_is("transmit") handle_transmit();
+    if      token_is("fwrev")     handle_fwrev();
+    else if token_is("nv")        handle_nv();
+    else if token_is("ee")        handle_nv();
+    else if token_is("reboot")    handle_reboot();
+    else if token_is("help")      handle_help();
+    else if token_is("nvset")     handle_nvset();
+    else if token_is("eeset")     handle_nvset();
+    else if token_is("sim")       handle_sim();
+    else if token_is("temp")      handle_temp();
+    else if token_is("setpoint")  handle_setpoint();
+    else if token_is("ui")        handle_ui();
+    else if token_is("clog")      handle_clog();
+    else if token_is("servo")     handle_servo();
+    else if token_is("transmit")  handle_transmit();
+    else if token_is("calibrate") handle_calibrate();
 
     else fail_syntax();
 }
@@ -63,6 +64,23 @@ bool CSerialServer::handle_servo()
 }
 //=========================================================================================================
 
+
+
+//=========================================================================================================
+// handle_calibrate() - Calibrate the bare servo (when not installed)
+//=========================================================================================================
+bool CSerialServer::handle_calibrate()
+{
+    // Tell the user what we're doing
+    replyf("Calibrating bare servo ...");
+
+    // Tell the servo to run the calibration routine
+    Servo.calibrate_bare();
+
+    // Tell the client that all is well
+    return pass();
+}
+//=========================================================================================================
 
 
 
@@ -410,6 +428,7 @@ bool CSerialServer::handle_help()
     const char line_20 [] PROGMEM = "clog <start [value] | stop> - Turn the current logger on or off";
     const char line_21 [] PROGMEM = "servo <pwm_position>        - Move the servo to the specified position";
     const char line_22 [] PROGMEM = "transmit                    - Transmit telemetry packet via radio";
+    const char line_23 [] PROGMEM = "calibrate                   - Calibrate bare servo when not installed";
 
     replyf(line_01);
     replyf(line_02);
@@ -433,6 +452,7 @@ bool CSerialServer::handle_help()
     replyf(line_20);
     replyf(line_21);
     replyf(line_22);
+    replyf(line_23);
 
     return pass();
 }
